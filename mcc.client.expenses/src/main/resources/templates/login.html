@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+     <form th:action="@{/login}"method="post" th:object="${auth}"  class="needs-validation " novalidate>
+                    <div class="form-group">
+                        <br>
+                        <p th:text="${param.error} ? 'Username or password incorrect !' : '' " class="text-warning" role="alert"></p>
+                        <p th:text="${param.logout} ? 'You have been logged out !' : ''" class="text-warning" role="alert"></p>
+
+                        <label for="exampleInputEmail1 " style="color:  #ffffff">Username</label>
+                        <input type="text" class="form-control " id="username" placeholder="Username" aria-describedby="emailHelp"  th:field="*{userName}"  required >
+                        <div class="invalid-feedback" style="color: white" >
+                            <b>Please input a username.</b>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" style="color:  #ffffff">Password</label>
+                        <input type="password" class="form-control"   placeholder="Password" id="password" th:field="*{userPassword}"  required >
+                        <div class="invalid-feedback" style="color: white">
+                            <b>Please input a password.</b>
+                        </div>
+                    </div>
+
+                    <button type="submit"  id="loginForm" class="btn btn-info container " >Submit</button>
+                </form>
+    </body>
+</html>
