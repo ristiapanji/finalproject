@@ -8,6 +8,7 @@ package com.example.mcc.client.expenses.controllers;
 
 import com.example.mcc.client.expenses.entities.AuthRequest;
 import com.example.mcc.client.expenses.services.AuthService;
+import com.example.mcc.client.expenses.services.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,6 +30,9 @@ public class AuthController {
 
     @Autowired
     AuthService authService;
+    
+    @Autowired
+    private IndexService indexService;
 
     @GetMapping("/login")
     public String loginPage(Model model) {
@@ -47,6 +51,7 @@ public class AuthController {
     public String dashborad(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", authentication.getPrincipal().toString());
+         model.addAttribute("categories", indexService.getAll());//list dari getall
 //        model.addAttribute("autor", authentication.getPrincipal().toString());
 
 //        model.addAttribute("autor", authentication.getAuthorities().toString());
